@@ -1,0 +1,94 @@
+# Model name string, or null to use whatever is provided in the chat completion request
+model: ~
+# JSON schema of the model's output
+response_format: |
+  {
+    "$defs": {
+      "_MODEL_OUTPUT_ENTRY": {
+        "properties": {
+          "r": {
+            "minimum": 0,
+            "title": "R",
+            "type": "integer"
+          },
+          "c": {
+            "items": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "title": "C",
+            "type": "array"
+          }
+        },
+        "required": [
+          "r",
+          "c"
+        ],
+        "title": "_MODEL_OUTPUT_ENTRY",
+        "type": "object"
+      }
+    },
+    "items": {
+      "$ref": "#/$defs/_MODEL_OUTPUT_ENTRY"
+    },
+    "title": "_MODEL_OUTPUT",
+    "type": "array"
+  }
+transformations:
+  # Explode the list of document sentences in each citation
+  - type: explode
+    input_path: []  # Zero-length path means match root element
+    target_field: "c"
+  # Model may repeat itself; drop the resulting duplicates.
+  - type: drop_duplicates
+    input_path: []  # Zero-length path means match root element
+    target_fields: ["r", "c"]
+  # Replace sentence number with sentence location and contents.
+  # Do this first for sentences from the last turn, then for sentences from documents.
+  - type: decode_sentences
+    source: "last_message"
+    input_path: [~, "r"]  # Null in path means wildcard
+    # New fields to add for each sentence
+    output_names:
+      begin: "response_begin"
+      end: "response_end"
+      text: "response_text"
+  - type: decode_sentences
+    source: "documents"
+    input_path: [~, "c"]  # Null in path means wildcard
+    # New fields to add for each sentence
+    output_names:
+      document_id: "citation_doc_id"
+      begin: "citation_begin"
+      end: "citation_end"
+      text: "citation_text"
+  # Remove fields that we no longer need
+  - type: project
+    input_path: []
+    retained_fields:
+    - "response_begin"
+    - "response_end"
+    - "response_text"
+    - "citation_doc_id"
+    - "citation_begin"
+    - "citation_end"
+    - "citation_text"
+
+instruction: >
+  You provided the last assistant response above based on context, which may include documents and/or previous conversation turns.
+  Your response is divided into sentences, numbered in the format <r0> sentence 0 <r1> sentence 1 ...
+  Sentences in the context are also numbered: <c0> sentence 0 <c1> sentence 1 ...
+  For each response sentence, please list the context sentences that were most important for you to generate the response sentence.
+  Provide your answer in JSON format, as an array of JSON objects, where each object has two members:
+  "r" with the response sentence number as the value, and "c" with an array of context sentence numbers as the value.
+  An example of such an array of objects is [{"r": 0, "c": [3, 1, 4]}, {"r": 1, "c": [1, 5]}].
+  List the context sentences in order from most important to least important.
+  Ensure that you include an object for each response sentence, even if the corresponding array of context sentence numbers is empty.
+  Answer with only the JSON and do not explain.
+parameters:
+  max_completion_tokens: 4096
+sentence_boundaries:
+  # Mapping from string location to sentence delimiter prefix
+  last_message: "r"  # <r0>, <r1>, etc.
+  documents: "c"
+  all_but_last_message: "c"
