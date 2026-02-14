@@ -81,7 +81,7 @@ instruction: >
   For each response sentence, please list the context sentences that were most important for you to generate the response sentence.
   Provide your answer in JSON format, as an array of JSON objects, where each object has two members:
   "r" with the response sentence number as the value, and "c" with an array of context sentence numbers as the value.
-  An example of such an array of objects is [{"r": 0, "c": [3, 1, 4]}, {"r": 1, "c": [1, 5]}].
+  An example of such an array of objects is [{{"r": 0, "c": [3, 1, 4]}}, {{"r": 1, "c": [1, 5]}}].
   List the context sentences in order from most important to least important.
   Ensure that you include an object for each response sentence, even if the corresponding array of context sentence numbers is empty.
   Answer with only the JSON and do not explain.
