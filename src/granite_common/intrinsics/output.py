@@ -828,6 +828,15 @@ class Nest(InPlaceTransformation):
         return {self.field_name: value}
 
 
+class WrapInList(InPlaceTransformation):
+    """Wrap a value within a JSON structure in a single-element list."""
+
+    YAML_NAME = "wrap_in_list"
+
+    def _transform(self, value, path, prepare_output):
+        return [value]
+
+
 class MergeSpans(InPlaceTransformation):
     """Merge adjacent spans into larger spans."""
 
@@ -989,6 +998,7 @@ ALL_RULES = [
     Nest,
     Project,
     TokenToFloat,
+    WrapInList,
 ]
 NAME_TO_RULE = {cls.YAML_NAME: cls for cls in ALL_RULES}
 

@@ -15,6 +15,9 @@ transformations:
   - type: nest
     input_path: []  # Zero-length path means match root element
     field_name: "c"
+  # Wrap the record in a list so that subsequent rules can treat it as a list of records
+  - type: wrap_in_list
+    input_path: []  # Zero-length path means match root element
   # Explode the list of context sentence indices into individual rows
   - type: explode
     input_path: []  # Zero-length path means match root element
