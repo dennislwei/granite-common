@@ -227,6 +227,19 @@ _YAML_JSON_COMBOS_LIST = [
     #     task="citations",
     #     is_alora=True,
     # ),
+    YamlJsonCombo(
+        short_name="context_attribution_all",
+        yaml_file=_INPUT_YAML_DIR / "context_attribution_all.yaml",
+        inputs_file=_INPUT_JSON_DIR / "context_attribution_all.json",
+        task=None,
+    ),
+    YamlJsonCombo(
+        short_name="context_attribution_single",
+        yaml_file=_INPUT_YAML_DIR / "context_attribution_single.yaml",
+        inputs_file=_INPUT_JSON_DIR / "context_attribution_single.json",
+        arguments_file=_INPUT_ARGS_DIR / "context_attribution_single.json",
+        task=None,
+    ),
 ]
 _YAML_JSON_COMBOS = {c.short_name: c for c in _YAML_JSON_COMBOS_LIST}
 
