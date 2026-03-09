@@ -1,0 +1,30 @@
+{
+  "choices": [
+    {
+      "index": 0,
+      "message": {
+        "content": "[{\"response_begin\": 0, \"response_end\": 142, \"response_text\": \"The Plastic Ono Band was formed by John Lennon and Yoko Ono in 1969 as a collaborative vehicle for their artistic and personal projects. \", \"citation_doc_id\": \"0\", \"citation_msg_index\": null, \"citation_begin\": 0, \"citation_end\": 135, \"citation_text\": \"The Plastic Ono Band is a band formed by John Lennon and Yoko Ono in 1969 as a vehicle for their collaborative and solo projects. \"}, {\"response_begin\": 0, \"response_end\": 142, \"response_text\": \"The Plastic Ono Band was formed by John Lennon and Yoko Ono in 1969 as a collaborative vehicle for their artistic and personal projects. \", \"citation_doc_id\": \"0\", \"citation_msg_index\": null, \"citation_begin\": 394, \"citation_end\": 820, \"citation_text\": \"Following their marriage in 1969, they decided that all of their future endeavours would be credited to a conceptual and collaborative vehicle, Plastic Ono Band. \"}, {\"response_begin\": 142, \"response_end\": 262, \"response_text\": \"They decided to credit all their future efforts to this conceptual and collaborative group after their marriage in 1969.\", \"citation_doc_id\": \"0\", \"citation_msg_index\": null, \"citation_begin\": 394, \"citation_end\": 820, \"citation_text\": \"Following their marriage in 1969, they decided that all of their future endeavours would be credited to a conceptual and collaborative vehicle, Plastic Ono Band. \"}, {\"response_begin\": 142, \"response_end\": 262, \"response_text\": \"They decided to credit all their future efforts to this conceptual and collaborative group after their marriage in 1969.\", \"citation_doc_id\": \"0\", \"citation_msg_index\": null, \"citation_begin\": 0, \"citation_end\": 135, \"citation_text\": \"The Plastic Ono Band is a band formed by John Lennon and Yoko Ono in 1969 as a vehicle for their collaborative and solo projects. \"}, {\"response_begin\": 142, \"response_end\": 262, \"response_text\": \"They decided to credit all their future efforts to this conceptual and collaborative group after their marriage in 1969.\", \"citation_doc_id\": \"0\", \"citation_msg_index\": null, \"citation_begin\": 135, \"citation_end\": 394, \"citation_text\": \"Lennon and Ono had begun a personal and artistic relationship in 1968, collaborating on several experimental releases. \"}]",
+        "role": "assistant",
+        "tool_calls": [],
+        "reasoning_content": null
+      },
+      "logprobs": null,
+      "finish_reason": "stop"
+    }
+  ],
+  "prompt_logprobs": null,
+  "id": "chatcmpl-a7d7170784e84757b5bc365cb25c57c9",
+  "created": 1757963100,
+  "model": "context_attribution_all",
+  "object": "chat.completion",
+  "service_tier": null,
+  "system_fingerprint": null,
+  "usage": {
+    "completion_tokens": 32,
+    "prompt_tokens": 1124,
+    "total_tokens": 1156,
+    "completion_tokens_details": null,
+    "prompt_tokens_details": null
+  },
+  "kv_transfer_params": null
+}
