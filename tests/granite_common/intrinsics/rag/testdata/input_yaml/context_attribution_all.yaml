@@ -35,7 +35,7 @@ response_format: |
     "type": "array"
   }
 transformations:
-  # Explode the list of document sentences in each citation
+  # Explode lists of context sentence indices
   - type: explode
     input_path: []  # Zero-length path means match root element
     target_field: "c"
@@ -60,11 +60,11 @@ transformations:
     input_path: [~, "c"]  # Null in path means wildcard
     # New fields to add for each sentence
     output_names:
-      document_id: "citation_doc_id"
-      message_index: "citation_msg_index"
-      begin: "citation_begin"
-      end: "citation_end"
-      text: "citation_text"
+      document_id: "attribution_doc_id"
+      message_index: "attribution_msg_index"
+      begin: "attribution_begin"
+      end: "attribution_end"
+      text: "attribution_text"
   # Remove fields that we no longer need
   - type: project
     input_path: []
@@ -72,11 +72,11 @@ transformations:
     - "response_begin"
     - "response_end"
     - "response_text"
-    - "citation_doc_id"
-    - "citation_msg_index"
-    - "citation_begin"
-    - "citation_end"
-    - "citation_text"
+    - "attribution_doc_id"
+    - "attribution_msg_index"
+    - "attribution_begin"
+    - "attribution_end"
+    - "attribution_text"
 
 instruction: >
   You provided the last assistant response above based on context, which may include documents and/or previous conversation turns.
