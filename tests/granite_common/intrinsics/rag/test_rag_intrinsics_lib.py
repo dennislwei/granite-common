@@ -232,6 +232,7 @@ _YAML_JSON_COMBOS_LIST = [
         short_name="context-attribution",
         inputs_file=_INPUT_JSON_DIR / "context-attribution.json",
         task="context-attribution",
+        repo_id="ibm-granite/granitelib-core-r1.0",
     ),
     # gpt-oss-20b intrinsics (canned output tests only, no inference)
     YamlJsonCombo(
