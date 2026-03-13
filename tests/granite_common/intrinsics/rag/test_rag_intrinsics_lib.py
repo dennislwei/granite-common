@@ -290,12 +290,17 @@ _YAML_JSON_COMBOS_WITH_LORA_MODEL = {
 }
 
 # Combinations suitable for an Ollama backend
+_NO_OLLAMA_ADAPTER = {
+    # Ollama LoRA adapter not yet available on HF Hub
+    "context-attribution",
+}
 _YAML_JSON_COMBOS_FOR_OLLAMA = {
     k: v
     for k, v in _YAML_JSON_COMBOS.items()
     if v.task is not None
     and not v.is_alora
     and v.base_model_id == "ibm-granite/granite-4.0-micro"
+    and k not in _NO_OLLAMA_ADAPTER
 }
 
 
